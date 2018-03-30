@@ -1,0 +1,62 @@
+!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+!! NEMO/LIM-2 : 1 - dynamics/advection/thermo          (namicerun)
+!! namelists    2 - ice intialisation                  (namiceini)
+!!              3 - ice dynamic                        (namicedyn)
+!!              4 - ice advection                      (namicetrp)
+!!              5 - thermodynamic                      (namicethd)
+!!              6 - ice damping                        (namice_dmp)
+!!              7 - ice diagnostics                    (namicedia)
+!!              8 - ice outputs                        (namiceout)
+!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+!-----------------------------------------------------------------------
+&namicerun     !   Share parameters for dynamics/advection/thermo
+!-----------------------------------------------------------------------
+   cn_icerst_outdir = "./RESTARTS"             !  directory in which to write output ice restarts
+   cn_icerst_indir = "./RESTARTS" 
+   cn_icerst_in  = "FER-BCTFE04_00001000_restart_ice"   !  suffix of ice restart name (input)
+/
+!-----------------------------------------------------------------------
+&namiceini     !   ice initialisation
+!-----------------------------------------------------------------------
+   ln_limini   = .false.   !  read the initial state in 'Ice_initialization.nc' (T) or not (F)
+   ttest       =  2.0      !  threshold water temperature for initial sea ice
+   hninn       =  0.5      !  initial snow thickness in the north
+   hginn       =  3.0      !  initial ice  thickness in the north
+   alinn       =  0.05     !  initial leads area     in the north
+   hnins       =  0.1      !  same  three parameter  in the south
+   hgins       =  1.0      !        "                 "     south   
+   alins       =  0.1      !        "                 "     south
+/
+!-----------------------------------------------------------------------
+&namicedyn     !   ice dynamic
+!-----------------------------------------------------------------------
+   pstar       =   1.5e+04 !  1st bulk-rheology parameter
+   rn_creepl      =   5.0e-09 !  creep limit
+   rn_ecc         =   2.0     !  eccentricity of the elliptical yield curve
+   ahi0        = 200.0     !  horizontal eddy diffusivity coefficient for sea-ice [m2/s]
+   nn_nevp        = 300       !  number of EVP subcycling iterations
+   telast      = 2880      !  timescale for EVP elastic waves
+/
+!-----------------------------------------------------------------------
+&namicetrp     !   ice transport
+!-----------------------------------------------------------------------
+/
+!-----------------------------------------------------------------------
+&namicethd     !   ice thermodynamic
+!-----------------------------------------------------------------------
+   hiccrit     = 0.3 , 0.6 !  ice thickness for lateral accretion in the Northern (Southern) Hemisphere
+/
+!-----------------------------------------------------------------------
+&namice_dmp    !   damping of sea ice alone open boundaries
+!              !   (hard coded damping area: check if it fit your config)
+!-----------------------------------------------------------------------
+/
+!-----------------------------------------------------------------------
+&namicedia     !   ice diagnostics
+!-----------------------------------------------------------------------
+/
+!'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+&namiceout     !   parameters for outputs
+!,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+/      
